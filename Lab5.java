@@ -1,9 +1,9 @@
 /*-------------------------------------------------------------
-// AUTHOR: 
-// FILENAME:
-// SPECIFICATION:
-// FOR:
-// TIME SPENT:
+// AUTHOR: Brandon Worleu
+// FILENAME: Lab5.java
+// SPECIFICATION: creating methods that execute functions
+// FOR: CSE 100
+// TIME SPENT:1.5 hours
 //-----------------------------------------------------------*/
 
 import java.util.Scanner;
@@ -36,7 +36,7 @@ public class Lab5 {
 
                 System.out.println();
                 System.out.println(buildRow(
-                    SIDE_SYMB, sideWidth, MID_SYMB, midWidth
+                    SIDE_SYMB, sideWidth, MID_SYMB, midWidth, SIDE_SYMB
                 ));
 
                 break;
@@ -86,7 +86,7 @@ public class Lab5 {
      * @return          A String of a row of the designed pattern
      */
     private static String buildRow(
-        char sideSymb, int sideWidth, char midSymb, int midWidth) {
+        char sideSymb, int sideWidth, char midSymb, int midWidth, char sideSymb2) {
         String result = "";
         
         for (int i = 0; i < sideWidth; i++) {
@@ -94,6 +94,9 @@ public class Lab5 {
         }
         for (int i = 0; i < midWidth; i++) {
             result += midSymb;
+        }   
+        for (int i = 0; i < sideWidth; i++) {
+            result += sideSymb; 
         }
 
         return result;
@@ -131,7 +134,7 @@ public class Lab5 {
 
         for (int numStars = 1; numStars <= numSymbols; numStars += 2) {
             int numDashed = (totalSymbOneRow - numStars) / 2;
-            String row = buildRow(sideSymb, numDashed, midSymb, numStars);
+            String row = buildRow(sideSymb, numDashed, midSymb, numStars, sideSymb);
             result += row + "\n";
         }
 
@@ -154,6 +157,26 @@ public class Lab5 {
         
         // YOUR CODE HERE
         // -->
+        if (numSymbols % 2 != 0) {
+        int totalSymbRow = numSymbols;
+        for(int numSpacebar = 1; numSpacebar <= totalSymbRow; numSpacebar+= 2) {
+        	int numstars =(totalSymbRow - numSpacebar) /2;
+        	String row = buildRow(sideSymb, numstars, midSymb, numSpacebar, sideSymb);
+        	result += row +"/n";
+        }}
+        if (numSymbols % 2 == 0) {
+        	int totalSymbRow = numSymbols - 1;
+        	for(int numSpacebar = 1; numSpacebar <= totalSymbRow; numSpacebar += 2) {
+        		int numstars = (totalSymbRow - numSpacebar)/ 2;
+        		String row = buildRow(sideSymb, numstars, midSymb, numSpacebar, sideSymb);
+        		result += row +"/n"; 
+        	}
+        	for (int numSpacebar = totalSymbRow - 2; numSpacebar > 0; numSpacebar -= 2) {
+        		int numstars = (totalSymbRow - numSpacebar)/ 2;
+        		String row = buildRow(sideSymb, numstars, midSymb, numSpacebar, sideSymb);
+        		result += row + "/n";
+        	}
+        }
         
         return result;
     }
