@@ -9,8 +9,7 @@ import java.util.Scanner;
 public class Lab7 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        String sFirstname, sLastname, sAsuID;
-        double sGrade;
+        String sFirstname, sLastname, fullName = null, sAsuID; double sGrade;
         String pName, pDesc, pFname;
 
         // Read some input data
@@ -31,23 +30,26 @@ public class Lab7 {
         println(""); scan.close();
 
         // Create a Student object "student1"
-
+        
+        Student student1 = new Student(sFirstname, sLastname, fullName, sAsuID, sGrade);
+        System.out.println("Making a Student Report\n...[" + student1 + "]");
         // Use the setGrade setter to set student1's grade
-
+        student1.setGrade(sGrade);
 
         // Create a Program object "program1" by "student1"
         Program program1 = new Program(pName, pDesc, pFname, student1);
         System.out.println("Making a program record\n...[" + program1 + "]");
+     
 
         // Invoke makeReport to show the report of student1
-
+        makeReport(program1);
     }
 
 
 
     private static void makeReport(Program program) {
         println("\n========== Program Submission Detail ==========");
-        pprint("Student", program.getAuthor().getFullName());
+        pprint("Student", program.getAuthor().getFullname());
         pprint("ASU ID", program.getAuthor().getAsuID());
         pprint("Grade", "" + program.getAuthor().getGrade());
         println("");

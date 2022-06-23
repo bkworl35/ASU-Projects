@@ -10,7 +10,7 @@ import java.text.NumberFormat;
 public class Account
 {
    private final double RATE = 0.035;  // interest rate of 3.5%
-
+   //Instance variables
    private long acctNumber;
    private double balance;
    private String name;
